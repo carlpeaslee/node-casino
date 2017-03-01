@@ -4,7 +4,7 @@ import SocketIO from 'socket.io'
 
 const app = express()
 
-app.set('port', 5000)
+app.set('port', 3000)
 
 const server = app.listen(app.get('port'), ()=>{
   console.log(`Server is running at port ${app.get('port')}`)
