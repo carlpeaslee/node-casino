@@ -1,56 +1,266 @@
 const StandardDeck = [
-    { "suit": "Spades",   "cid": 0,  "index": 0,  "rank": 2,  "value": 2  },
-    { "suit": "Spades",   "cid": 1,  "index": 1,  "rank": 3,  "value": 3  },
-    { "suit": "Spades",   "cid": 2,  "index": 2,  "rank": 4,  "value": 4  },
-    { "suit": "Spades",   "cid": 3,  "index": 3,  "rank": 5,  "value": 5  },
-    { "suit": "Spades",   "cid": 4,  "index": 4,  "rank": 6,  "value": 6  },
-    { "suit": "Spades",   "cid": 5,  "index": 5,  "rank": 7,  "value": 7  },
-    { "suit": "Spades",   "cid": 6,  "index": 6,  "rank": 8,  "value": 8  },
-    { "suit": "Spades",   "cid": 7,  "index": 7,  "rank": 9,  "value": 9  },
-    { "suit": "Spades",   "cid": 8,  "index": 8,  "rank": 10, "value": 10 },
-    { "suit": "Spades",   "cid": 9,  "index": 9,  "rank": 11, "value": 10 },
-    { "suit": "Spades",   "cid": 10, "index": 10, "rank": 12, "value": 10 },
-    { "suit": "Spades",   "cid": 11, "index": 11, "rank": 13, "value": 10 },
-    { "suit": "Spades",   "cid": 12, "index": 12, "rank": 14, "value": 10 },
-    { "suit": "Hearts",   "cid": 13, "index": 13, "rank": 2,  "value": 2  },
-    { "suit": "Hearts",   "cid": 14, "index": 14, "rank": 3,  "value": 3  },
-    { "suit": "Hearts",   "cid": 15, "index": 15, "rank": 4,  "value": 4  },
-    { "suit": "Hearts",   "cid": 16, "index": 16, "rank": 5,  "value": 5  },
-    { "suit": "Hearts",   "cid": 17, "index": 17, "rank": 6,  "value": 6  },
-    { "suit": "Hearts",   "cid": 18, "index": 18, "rank": 7,  "value": 7  },
-    { "suit": "Hearts",   "cid": 19, "index": 19, "rank": 8,  "value": 8  },
-    { "suit": "Hearts",   "cid": 20, "index": 20, "rank": 9,  "value": 9  },
-    { "suit": "Hearts",   "cid": 21, "index": 21, "rank": 10, "value": 10 },
-    { "suit": "Hearts",   "cid": 22, "index": 22, "rank": 11, "value": 10 },
-    { "suit": "Hearts",   "cid": 23, "index": 23, "rank": 12, "value": 10 },
-    { "suit": "Hearts",   "cid": 24, "index": 24, "rank": 13, "value": 10 },
-    { "suit": "Hearts",   "cid": 25, "index": 25, "rank": 14, "value": 10 },
-    { "suit": "Clubs", 	  "cid": 26, "index": 26, "rank": 2,  "value": 2  },
-    { "suit": "Clubs", 	  "cid": 27, "index": 27, "rank": 3,  "value": 3  },
-    { "suit": "Clubs", 	  "cid": 28, "index": 28, "rank": 4,  "value": 4  },
-    { "suit": "Clubs", 	  "cid": 29, "index": 29, "rank": 5,  "value": 5  },
-    { "suit": "Clubs", 	  "cid": 30, "index": 30, "rank": 6,  "value": 6  },
-    { "suit": "Clubs", 	  "cid": 31, "index": 31, "rank": 7,  "value": 7  },
-    { "suit": "Clubs", 	  "cid": 32, "index": 32, "rank": 8,  "value": 8  },
-    { "suit": "Clubs", 	  "cid": 33, "index": 33, "rank": 9,  "value": 9  },
-    { "suit": "Clubs", 	  "cid": 34, "index": 34, "rank": 10, "value": 10 },
-    { "suit": "Clubs", 	  "cid": 35, "index": 35, "rank": 11, "value": 10 },
-    { "suit": "Clubs", 	  "cid": 36, "index": 36, "rank": 12, "value": 10 },
-    { "suit": "Clubs", 	  "cid": 37, "index": 37, "rank": 13, "value": 10 },
-    { "suit": "Clubs", 	  "cid": 38, "index": 38, "rank": 14, "value": 10 },
-    { "suit": "Diamonds", "cid": 39, "index": 39, "rank": 2,  "value": 2  },
-    { "suit": "Diamonds", "cid": 40, "index": 40, "rank": 3,  "value": 3  },
-    { "suit": "Diamonds", "cid": 41, "index": 41, "rank": 4,  "value": 4  },
-    { "suit": "Diamonds", "cid": 42, "index": 42, "rank": 5,  "value": 5  },
-    { "suit": "Diamonds", "cid": 43, "index": 43, "rank": 6,  "value": 6  },
-    { "suit": "Diamonds", "cid": 44, "index": 44, "rank": 7,  "value": 7  },
-    { "suit": "Diamonds", "cid": 45, "index": 45, "rank": 8,  "value": 8  },
-    { "suit": "Diamonds", "cid": 46, "index": 46, "rank": 9,  "value": 9  },
-    { "suit": "Diamonds", "cid": 47, "index": 47, "rank": 10, "value": 10 },
-    { "suit": "Diamonds", "cid": 48, "index": 48, "rank": 11, "value": 10 },
-    { "suit": "Diamonds", "cid": 49, "index": 49, "rank": 12, "value": 10 },
-    { "suit": "Diamonds", "cid": 50, "index": 50, "rank": 13, "value": 10 },
-    { "suit": "Diamonds", "cid": 51, "index": 51, "rank": 14, "value": 10 }
+  {
+    "suit": "SPADES",
+    "cid": 0,
+    "rank": 2,
+    "value": 2
+  },{
+    "suit": "SPADES",
+    "cid": 1,
+    "rank": 3,
+    "value": 3
+  },{
+    "suit": "SPADES",
+    "cid": 2,
+    "rank": 4,
+    "value": 4
+  },{
+    "suit": "SPADES",
+    "cid": 3,
+    "rank": 5,
+    "value": 5
+  },{
+    "suit": "SPADES",
+    "cid": 4,
+    "rank": 6,
+    "value": 6
+  },{
+    "suit": "SPADES",
+    "cid": 5,
+    "rank": 7,
+    "value": 7
+  },{
+    "suit": "SPADES",
+    "cid": 6,
+    "rank": 8,
+    "value": 8
+  },{
+    "suit": "SPADES",
+    "cid": 7,
+    "rank": 9,
+    "value": 9
+  },{
+    "suit": "SPADES",
+    "cid": 8,
+    "rank": 10,
+    "value": 10
+  },{
+    "suit": "SPADES",
+    "cid": 9,
+    "rank": 11,
+    "value": 10
+  },{
+    "suit": "SPADES",
+    "cid": 10,
+    "rank": 12,
+    "value": 10
+  },{
+    "suit": "SPADES",
+    "cid": 11,
+    "rank": 13,
+    "value": 10
+  },{
+    "suit": "SPADES",
+    "cid": 12,
+    "rank": 14,
+    "value": 10
+  },{
+    "suit": "HEARTS",
+    "cid": 13,
+    "rank": 2,
+    "value": 2
+  },{
+    "suit": "HEARTS",
+    "cid": 14,
+    "rank": 3,
+    "value": 3
+  },{
+    "suit": "HEARTS",
+    "cid": 15,
+    "rank": 4,
+    "value": 4
+  },{
+    "suit": "HEARTS",
+    "cid": 16,
+    "rank": 5,
+    "value": 5
+  },{
+    "suit": "HEARTS",
+    "cid": 17,
+    "rank": 6,
+    "value": 6
+  },{
+    "suit": "HEARTS",
+    "cid": 18,
+    "rank": 7,
+    "value": 7
+  },{
+    "suit": "HEARTS",
+    "cid": 19,
+    "rank": 8,
+    "value": 8
+  },{
+    "suit": "HEARTS",
+    "cid": 20,
+    "rank": 9,
+    "value": 9
+  },{
+    "suit": "HEARTS",
+    "cid": 21,
+    "rank": 10,
+    "value": 10
+  },{
+    "suit": "HEARTS",
+    "cid": 22,
+    "rank": 11,
+    "value": 10
+  },{
+    "suit": "HEARTS",
+    "cid": 23,
+    "rank": 12,
+    "value": 10
+  },{
+    "suit": "HEARTS",
+    "cid": 24,
+    "rank": 13,
+    "value": 10
+  },{
+    "suit": "HEARTS",
+    "cid": 25,
+    "rank": 14,
+    "value": 10
+  },{
+    "suit": "CLUBS",
+    "cid": 26,
+    "rank": 2,
+    "value": 2
+  },{
+    "suit": "CLUBS",
+    "cid": 27,
+    "rank": 3,
+    "value": 3
+  },{
+    "suit": "CLUBS",
+    "cid": 28,
+    "rank": 4,
+    "value": 4
+  },{
+    "suit": "CLUBS",
+    "cid": 29,
+    "rank": 5,
+    "value": 5
+  },{
+    "suit": "CLUBS",
+    "cid": 30,
+    "rank": 6,
+    "value": 6
+  },{
+    "suit": "CLUBS",
+    "cid": 31,
+    "rank": 7,
+    "value": 7
+  },{
+    "suit": "CLUBS",
+    "cid": 32,
+    "rank": 8,
+    "value": 8
+  },{
+    "suit": "CLUBS",
+    "cid": 33,
+    "rank": 9,
+    "value": 9
+  },{
+    "suit": "CLUBS",
+    "cid": 34,
+    "rank": 10,
+    "value": 10
+  },{
+    "suit": "CLUBS",
+    "cid": 35,
+    "rank": 11,
+    "value": 10
+  },{
+    "suit": "CLUBS",
+    "cid": 36,
+    "rank": 12,
+    "value": 10
+  },{
+    "suit": "CLUBS",
+    "cid": 37,
+    "rank": 13,
+    "value": 10
+  },{
+    "suit": "CLUBS",
+    "cid": 38,
+    "rank": 14,
+    "value": 10
+  },{
+    "suit": "DIAMONDS",
+    "cid": 39,
+    "rank": 2,
+    "value": 2
+  },{
+    "suit": "DIAMONDS",
+    "cid": 40,
+    "rank": 3,
+    "value": 3
+  },{
+    "suit": "DIAMONDS",
+    "cid": 41,
+    "rank": 4,
+    "value": 4
+  },{
+    "suit": "DIAMONDS",
+    "cid": 42,
+    "rank": 5,
+    "value": 5
+  },{
+    "suit": "DIAMONDS",
+    "cid": 43,
+    "rank": 6,
+    "value": 6
+  },{
+    "suit": "DIAMONDS",
+    "cid": 44,
+    "rank": 7,
+    "value": 7
+  },{
+    "suit": "DIAMONDS",
+    "cid": 45,
+    "rank": 8,
+    "value": 8
+  },{
+    "suit": "DIAMONDS",
+    "cid": 46,
+    "rank": 9,
+    "value": 9
+  },{
+    "suit": "DIAMONDS",
+    "cid": 47,
+    "rank": 10,
+    "value": 10
+  },{
+    "suit": "DIAMONDS",
+    "cid": 48,
+    "rank": 11,
+    "value": 10
+  },{
+    "suit": "DIAMONDS",
+    "cid": 49,
+    "rank": 12,
+    "value": 10
+  },{
+    "suit": "DIAMONDS",
+    "cid": 50,
+    "rank": 13,
+    "value": 10
+  },{
+    "suit": "DIAMONDS",
+    "cid": 51,
+    "rank": 14,
+    "value": 10
+  }
 ]
+
 
 export default StandardDeck

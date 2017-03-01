@@ -1,6 +1,6 @@
 export default class Dealer {
-  constructor(deckType, numberOfDecks, ) {
-    this.discardPile
+  constructor(deckType, numberOfDecks = 1 ) {
+    this.discardPile = []
     this.deck = []
     for (let i = 0; i < numberOfDecks; i++) {
       this.deck.push(...deckType)
@@ -34,7 +34,11 @@ export default class Dealer {
   }
 
   discard(cards) {
-    this.discardPile.push(...cards)
+    if (typeof cards === 'array') {
+      this.discardPile.push(...cards)
+    } else {
+      this.discardPile.push(cards)
+    }
   }
 
   burn(number) {

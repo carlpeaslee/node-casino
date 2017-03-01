@@ -1,19 +1,26 @@
 const HandEvaluator = (hand) => {
-
-
-
+  return {
+    ...flush(hand),
+    
+  }
 }
 
-const isFlush = (hand) => {
+const flush = (hand) => {
   for (let card in hand) {
     if (card.suit !== hand[0].suit) {
-      return false
+      return {
+        flush: false,
+        flushSuit: false,
+      }
     }
   }
-  return true
+  return {
+    flush: true,
+    flushSuit: hand[0].suit
+  }
 }
 
-const isStraight = (hand) => {
+const straight = (hand) => {
   let sortedHand = hand.sort( (a,b) => {
     return a.rank - b.rank
   })
