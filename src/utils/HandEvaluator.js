@@ -18,7 +18,7 @@ const isStraight = (hand) => {
     return a.rank - b.rank
   })
   for (let i = 0; i < sortedHand.length; i++) {
-    if (sortedHand[i].rank)
+  //  if (sortedHand[i].rank)
   }
 }
 
