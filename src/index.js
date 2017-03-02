@@ -3,7 +3,8 @@ import SocketIO from 'socket.io'
 
 import StandardDeck from './config/StandardDeck'
 import Dealer from './utils/Dealer'
-import {JoBCalc} from './config/PayTables/VideoPoker'
+import {JoBCalc, JoB} from './config/PayTables/VideoPoker'
+import handEvaluator from './utils/handEvaluator'
 
 const app = express()
 
@@ -17,15 +18,16 @@ const io = new SocketIO(server)
 
 io.on('connection', client => {
   console.log('connection received')
-  let dealer = new Dealer(StandardDeck)
-  let playerHand = []
+  client.emit('payTable', JoB)
+  let dealer
+  let playerHand
   client.on('newGame', data => {
-    console.log('newGame request', data)
+    dealer = new Dealer(StandardDeck)
+    playerHand = []
     playerHand.push(...dealer.draw(5))
     client.emit('openingHand', playerHand)
   })
   client.on('swap', discards => {
-    console.log("swap", discards)
     discards.forEach( (discard, index) => {
       if (discard) {
         let newCard = dealer.draw(1)
@@ -33,6 +35,9 @@ io.on('connection', client => {
         dealer.discard(oldCard)
       }
     })
-    client.emit('newCards', playerHand)
+    client.emit('result', {
+      playerHand,
+      result: handEvaluator(playerHand)
+    })
   })
 })
