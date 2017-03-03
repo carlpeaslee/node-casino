@@ -1,4 +1,5 @@
-const handEvaluator = (hand) => {
+const handEvaluator = (inputHand) => {
+  const hand = inputHand
   let result = {
     ...flush(hand),
     ...straight(hand),
@@ -219,7 +220,7 @@ const winningVideoPokerHand = (result) => {
     }
   } else if (result.pair && Math.max(...result.pairValues) >= 11) {
     return {
-      winningVideoPokerHand: 'Jack High Pair'
+      winningVideoPokerHand: 'Jacks or Better'
     }
   } else {
     return {

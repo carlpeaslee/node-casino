@@ -7,12 +7,12 @@ export const JoB = {
   'Straight': 4,
   'Three of a Kind': 3,
   'Two Pair': 2,
-  'Jack High Pair': 1
+  'Jacks or Better': 1
 }
 
-export const JoBCalc = (hand, bet) => {
+export const JoBWinnings = (result, bet) => {
   let key = Object.keys(JoB).find((payoutKey)=>{
-    return payoutKey === hand.value
+    return payoutKey === result
   })
   if (!key) {
     return 0
