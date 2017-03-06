@@ -1,11 +1,11 @@
 import {JoBWinnings, JoB} from './PayTables'
-import handEvaluator from 'utils/handEvaluator'
-import StandardDeck from 'config/StandardDeck'
-import Dealer from 'utils/Dealer'
+import handEvaluator from '../../utils/handEvaluator'
+import StandardDeck from '../../config/StandardDeck'
+import Dealer from '../../utils/Dealer'
 
 
 const VideoPoker = (client) => {
-  client.emit('theme', {theme: false})
+  client.emit('theme', {theme: 'http://dev-games.gamesmart.com/gamesmart-casino/assets'})
   client.emit('payTable', JoB)
   let dealer, playerHand, bet
   client.on('newGame', (data) => {

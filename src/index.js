@@ -1,6 +1,6 @@
 import express from 'express'
 import SocketIO from 'socket.io'
-import VideoPoker from 'games/VideoPoker'
+import VideoPoker from './games/VideoPoker'
 
 const app = express()
 
