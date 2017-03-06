@@ -9,8 +9,8 @@
     "babel-preset-stage-2": "^6.22.0"
   },
   "scripts": {
-    "build": "babel src -d lib",
-    "start": "babel-node src"
+    "build": "NODE_PATH=lib/ babel src -d lib",
+    "start": "NODE_PATH=src/ babel-node src"
   },
   "babel": {
     "presets": [
