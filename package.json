@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "express": "^4.14.1",
-    "socket.io": "^1.7.3"
+    "redis": "^2.6.5",
+    "socket.io": "^1.7.3",
+    "socket.io-redis": "^4.0.0"
   }
 }
