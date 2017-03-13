@@ -214,7 +214,7 @@ const winningVideoPokerHand = (result) => {
     return {
       winningVideoPokerHand: 'Three of a Kind'
     }
-  } else if (result.twoPair && result.pairValues.length === 2) {
+  } else if (result.pair && result.pairValues.length === 2) {
     return {
       winningVideoPokerHand: 'Two Pair'
     }
