@@ -160,7 +160,7 @@ const multiples = (hand) => {
       fourOfAKindValues
     }
   }
-  if (result.twoOfAKind && result.threeOfAKind) {
+  if (result.pair && result.threeOfAKind) {
     result = {
       ...result,
       fullHouse: true
