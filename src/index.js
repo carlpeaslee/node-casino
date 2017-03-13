@@ -22,6 +22,6 @@ io.of('/chat').on('connection', Chat)
 io.of('/videopoker').on('connection', VideoPoker)
 
 
-io.of('/texasholdem').on('connection', (client) => {
-  TexasHoldem(client, io)
-})
+// io.of('/texasholdem').on('connection', (client) => {
+//   TexasHoldem(client, io)
+// })
