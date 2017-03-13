@@ -34,3 +34,43 @@ const VideoPoker = (client) => {
 }
 
 export default VideoPoker
+
+
+/*
+  Client Listeners
+
+  io.on('theme', {
+    theme: 'a url with the root director of the theme assets'
+  })
+
+  io.on('payTable', {
+    'handName': value,
+    'handName': value,
+    etc...
+  })
+
+  io.on('openingHand', {
+    [cardObject, cardObject, etc...]
+  })
+
+  io.on('result', {
+    playerHand: [cardObject, cardObject],
+    result: {
+      ...result object describing the hand
+    },
+    winnings: number
+  })
+
+  Client Actions
+
+  io.emit('newGame', {
+    bet: number
+  })
+
+  io.emit('swap',
+    [array of booleans]
+  )
+
+
+
+*/
