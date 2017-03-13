@@ -3,7 +3,7 @@ import SocketIO from 'socket.io'
 import adapter from 'socket.io-redis'
 
 import VideoPoker from './games/VideoPoker'
-import TexasHoldem from './games/TexasHoldem'
+// import TexasHoldem from './games/TexasHoldem'
 
 import Chat from './Chat'
 
@@ -21,7 +21,7 @@ io.of('/chat').on('connection', Chat)
 
 io.of('/videopoker').on('connection', VideoPoker)
 
-
+//
 // io.of('/texasholdem').on('connection', (client) => {
 //   TexasHoldem(client, io)
 // })
