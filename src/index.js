@@ -23,5 +23,5 @@ io.of('/videopoker').on('connection', VideoPoker)
 
 
 io.of('/texasholdem').on('connection', (client) => {
-  TexasHoldem(client)
+  TexasHoldem(client, io)
 })

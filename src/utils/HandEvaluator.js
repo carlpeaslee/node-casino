@@ -224,7 +224,7 @@ const winningVideoPokerHand = (result) => {
     }
   } else {
     return {
-      winningVideoPokerHand: false
+      winningVideoPokerHand: 'Bust'
     }
   }
 }

@@ -1,8 +1,11 @@
 import Dealer from '../../utils/Dealer'
+import StandardDeck from '../../config/StandardDeck'
 import redis from 'redis'
 import getTables from '../../redis/getTables'
 import joinTable from '../../redis/joinTable'
 import leaveTable from '../../redis/leaveTable'
+import checkGamestate from '../../redis/checkGamestate'
+import takeBlindsAndDeal from '../../redis/takeBlindsAndDeal'
 
 import {tex} from '../../redis'
 
@@ -17,9 +20,22 @@ const TexasHoldem = (client, io) => {
     client.user = user
     joinTable(tableId, user).then( (seats, err) => {
       client.join(tableId, ()=>{
-
+        client.emit(tableId).emit('positions', seats)
+        client.to(tableId).emit('positions', seats)
+        checkGamestate(tableId).then( (table, err) => {
+          let players = seats.filter( (seat) => {
+            return seat
+          })
+          if (table.gamestate === 'WAITING' && players.length > 1) {
+            let newGame = new Dealer(StandardDeck)
+            let deck = newGame.draw(52).map( card => card.cid)
+            takeBlindsAndDeal(tableId, deck).then( (res, err) => {
+              console.log('hello')
+            })
+          }
+        })
       })
-      client.emit('positions', seats)
+
     })
   })
 
