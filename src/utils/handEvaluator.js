@@ -1,4 +1,3 @@
-import config from './config'
 
 const handEvaluator = (inputHand) => {
   const hand = inputHand
