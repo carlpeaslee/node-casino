@@ -10,11 +10,26 @@ const takeBlindsAndDeal = (tableId, deck) => {
       let gamestate = {}
       res.forEach( (value, index) => {
         if ( index % 2 === 0) {
-          Object.assign(gamestate, {
-            [value]: res[index + 1]
-          })
+          if (Array.isArray(res[index + 1])) {
+            let playerObject = {}
+            res[index + 1].forEach( (item, i) => {
+              if (i % 2 === 0) {
+                Object.assign(playerObject, {
+                  [item]: res[index + 1][i + 1]
+                })
+              }
+            })
+            Object.assign(gamestate, {
+              [value]: playerObject
+            })
+          } else {
+            Object.assign(gamestate, {
+              [value]: res[index + 1]
+            })
+          }
         }
       })
+
       resolve(gamestate)
     })
   })

@@ -19,14 +19,14 @@ const TexasHoldem = (client, io) => {
     let {user, tableId} = data
     client.user = user
 
-    joinTable(tableId, user).then( (seats, err) => {
+    joinTable(tableId, user).then( (update, err) => {
       client.join(tableId, ()=>{
 
         getTables().then( (tables, err) => {
           client.nsp.emit('tables', tables)
         })
 
-        client.nsp.to(tableId).emit('positions', seats)
+        client.nsp.to(tableId).emit('positions', update)
 
         checkGamestate(tableId).then( (table, err) => {
           let players = seats.filter( (seat) => {

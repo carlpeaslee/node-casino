@@ -6,17 +6,35 @@ elseif numOfPlayers == nil then
 elseif numOfPlayers == 0 then
   redis.call('zadd', KEYS[1]..':players', 1, ARGV[2])
   redis.call('zincrby', 'tables', 1, ARGV[1])
-  return redis.call('zrange', KEYS[1]..':players', 0, -1, 'WITHSCORES')
+  -- return redis.call('zrange', KEYS[1]..':players', 0, -1, 'WITHSCORES')
 else
   for i = 1, 5 do
     local player = redis.call('zrangebyscore', KEYS[1]..':players', i, i)
     if  table.getn(player) == 0 then
       redis.call('zadd', KEYS[1]..':players', i, ARGV[2])
       redis.call('zincrby', 'tables', 1, ARGV[1])
-      return redis.call('zrange', KEYS[1]..':players', 0, -1, 'WITHSCORES')
+      -- return redis.call('zrange', KEYS[1]..':players', 0, -1, 'WITHSCORES')
     end
   end
 end
+
+
+local gamestate = redis.call('hgetall', KEYS[1])
+
+local players = redis.call('zrange', KEYS[1]..':players', 0, 4, 'WITHSCORES')
+
+for k, v in pairs(players) do
+  if k % 2 == 1 then
+    table.insert(gamestate, players[k + 1])
+    local player = redis.call('hgetall', v)
+    table.insert(player, 'player')
+    table.insert(player, v)
+    table.insert(gamestate, player)
+  end
+end
+
+
+return gamestate
 
 --[[
   KEYS

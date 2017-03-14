@@ -1,4 +1,3 @@
-import {JoBWinnings, JoB} from './PayTables'
 import handEvaluator from '../../utils/handEvaluator'
 import StandardDeck from '../../config/StandardDeck'
 import Dealer from '../../utils/Dealer'

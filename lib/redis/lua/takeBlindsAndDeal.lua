@@ -46,18 +46,17 @@ end
 local gamestate = redis.call('hgetall', KEYS[1])
 
 
-for k, v in pairs(players) do
-
-  gamestate[k] = v
-end
-
 players = redis.call('zrange', KEYS[1]..':players', 0, 4, 'WITHSCORES')
 
 for k, v in pairs(players) do
-  gamestate[k] = v
+  if k % 2 == 1 then
+    table.insert(gamestate, players[k + 1])
+    local player = redis.call('hgetall', v)
+    table.insert(player, 'player')
+    table.insert(player, v)
+    table.insert(gamestate, player)
+  end
 end
-
-
 
 
 return gamestate
