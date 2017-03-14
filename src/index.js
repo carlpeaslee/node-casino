@@ -3,7 +3,9 @@ import SocketIO from 'socket.io'
 import adapter from 'socket.io-redis'
 
 import VideoPoker from './games/VideoPoker'
-// import TexasHoldem from './games/TexasHoldem'
+import TexasHoldem from './games/TexasHoldem'
+
+import redisInit from './redis/init'
 
 import Chat from './Chat'
 
@@ -21,7 +23,9 @@ io.of('/chat').on('connection', Chat)
 
 io.of('/videopoker').on('connection', VideoPoker)
 
+redisInit().then( (res, err) => {
+})
 
-// io.of('/texasholdem').on('connection', (client) => {
-//   TexasHoldem(client, io)
-// })
+io.of('/texasholdem').on('connection', (client) => {
+  TexasHoldem(client, io)
+})

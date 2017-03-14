@@ -13,6 +13,7 @@ else
     if  table.getn(player) == 0 then
       redis.call('zadd', KEYS[1]..':players', i, ARGV[2])
       redis.call('zincrby', 'tables', 1, ARGV[1])
+      break
       -- return redis.call('zrange', KEYS[1]..':players', 0, -1, 'WITHSCORES')
     end
   end
@@ -33,6 +34,8 @@ for k, v in pairs(players) do
   end
 end
 
+table.insert(gamestate, 'players')
+table.insert(gamestate, redis.call('zscore','tables', KEYS[1]))
 
 return gamestate
 

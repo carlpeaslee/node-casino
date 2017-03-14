@@ -59,6 +59,9 @@ for k, v in pairs(players) do
 end
 
 
+table.insert(gamestate, 'players')
+table.insert(gamestate, redis.call('zscore','tables', KEYS[1]))
+
 return gamestate
 --[[
 KEYS
