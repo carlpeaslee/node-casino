@@ -55,7 +55,7 @@ const config = {
   maxBet: 5
 }
 
-winnings = (bet, modifier, comboId) => {
+export const winnings = (bet, modifier, comboId) => {
   return bet * modifier * config.paytable[hand].payout
 }
 
