@@ -2,13 +2,14 @@ import {JoBWinnings, JoB} from './PayTables'
 import handEvaluator from '../../utils/handEvaluator'
 import StandardDeck from '../../config/StandardDeck'
 import Dealer from '../../utils/Dealer'
-
+import config, {winnings} from './config'
 
 const VideoPoker = (client) => {
   client.emit('theme', {theme: 'http://dev-games.gamesmart.com/gamesmart-casino/assets'})
-  client.emit('payTable', JoB)
-  let dealer, playerHand, bet
+  client.emit('payTable', config)
+  let dealer, playerHand, bet, mod
   client.on('newGame', (data) => {
+    mod = data.mod
     bet = data.bet
     dealer = new Dealer(StandardDeck)
     playerHand = []
@@ -24,11 +25,11 @@ const VideoPoker = (client) => {
         playerHand[index] = newCard[0]
       }
     })
-    let result = handEvaluator(playerHand.slice())
+    let combo = handEvaluator(playerHand.slice())
     client.emit('result', {
       playerHand,
-      result,
-      winnings: JoBWinnings(result.winningVideoPokerHand, bet)
+      combo,
+      payout: winnings(bet, mod, combo)
     })
   })
 }

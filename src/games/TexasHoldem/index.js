@@ -18,10 +18,16 @@ const TexasHoldem = (client, io) => {
   client.on('joinTable', (data = {user, tableId}) => {
     let {user, tableId} = data
     client.user = user
+
     joinTable(tableId, user).then( (seats, err) => {
       client.join(tableId, ()=>{
-        client.emit(tableId).emit('positions', seats)
-        client.to(tableId).emit('positions', seats)
+
+        getTables().then( (tables, err) => {
+          client.nsp.emit('tables', tables)
+        })
+
+        client.nsp.to(tableId).emit('positions', seats)
+
         checkGamestate(tableId).then( (table, err) => {
           let players = seats.filter( (seat) => {
             return seat
@@ -29,8 +35,8 @@ const TexasHoldem = (client, io) => {
           if (table.gamestate === 'WAITING' && players.length > 1) {
             let newGame = new Dealer(StandardDeck)
             let deck = newGame.draw(52).map( card => card.cid)
-            takeBlindsAndDeal(tableId, deck).then( (res, err) => {
-              console.log('hello')
+            takeBlindsAndDeal(tableId, deck).then( (gamestate, err) => {
+              client.nsp.to(tableId).emit('update', gamestate)
             })
           }
         })

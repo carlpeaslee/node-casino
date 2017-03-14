@@ -1,3 +1,5 @@
+import config from './config'
+
 const handEvaluator = (inputHand) => {
   const hand = inputHand
   let result = {
@@ -13,11 +15,8 @@ const handEvaluator = (inputHand) => {
     ...result,
     ...royalFlush(result, hand)
   }
-  result = {
-    ...result,
-    ...winningVideoPokerHand(result)
-  }
-  return result
+
+  return videopokerFinal(result)
 }
 
 const flush = (hand) => {
@@ -185,47 +184,27 @@ const royalFlush = (result, hand) => {
   }
 }
 
-const winningVideoPokerHand = (result) => {
+const videopokerFinal = (result) => {
   if (result.royalFlush) {
-    return {
-      winningVideoPokerHand: 'Royal Flush'
-    }
+    return 0
   } else if (result.straightFlush) {
-    return {
-      winningVideoPokerHand: 'Straight Flush'
-    }
+    return 1
   } else if (result.fourOfAKind) {
-    return {
-      winningVideoPokerHand: 'Four of a Kind'
-    }
+    return 2
   } else if (result.fullHouse) {
-    return {
-      winningVideoPokerHand: 'Full House'
-    }
+    return 3
   } else if (result.flush) {
-    return {
-      winningVideoPokerHand: 'Flush'
-    }
+    return 4
   } else if (result.straight) {
-    return {
-      winningVideoPokerHand: 'Straight'
-    }
+    return 5
   } else if (result.threeOfAKind) {
-    return {
-      winningVideoPokerHand: 'Three of a Kind'
-    }
+    return 6
   } else if (result.pair && result.pairValues.length === 2) {
-    return {
-      winningVideoPokerHand: 'Two Pair'
-    }
+    return 7
   } else if (result.pair && Math.max(...result.pairValues) >= 11) {
-    return {
-      winningVideoPokerHand: 'Jacks or Better'
-    }
+    return 8
   } else {
-    return {
-      winningVideoPokerHand: 'Bust'
-    }
+    return 9
   }
 }
 
