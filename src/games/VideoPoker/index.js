@@ -6,7 +6,7 @@ import config, {winnings} from './config'
 
 const VideoPoker = (client) => {
   client.emit('theme', {theme: 'http://dev-games.gamesmart.com/gamesmart-casino/assets'})
-  client.emit('payTable', config)
+  client.emit('config', config)
   let dealer, playerHand, bet, mod
   client.on('newGame', (data) => {
     mod = data.mod
