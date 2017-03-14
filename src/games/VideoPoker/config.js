@@ -56,7 +56,7 @@ const config = {
 }
 
 export const winnings = (bet, modifier, comboId) => {
-  return bet * modifier * config.paytable[comboId].payout
+  return bet * modifier * config.payTable[comboId].payout
 }
 
 export default config
