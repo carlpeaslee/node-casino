@@ -1,3 +1,4 @@
+redis.replicate_commands()
 for i = 1, 52 do
   redis.call('lpush', KEYS[1]..':deck', ARGV[i])
 end
@@ -37,8 +38,12 @@ for i = 1, table.getn(players) do
   if  redis.call('hget', players[i], 'state') == 'BIG' then
     if i == table.getn(players) then
       redis.call('hset', KEYS[1], 'activePlayer', players[1])
+      local time = redis.call('time')
+      redis.call('hset', KEYS[1], 'timer', time[1])
     else
       redis.call('hset', KEYS[1], 'activePlayer', players[i + 1])
+      local time = redis.call('time')
+      redis.call('hset', KEYS[1], 'timer', time[1])
     end
   end
 end

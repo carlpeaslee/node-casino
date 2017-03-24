@@ -1,5 +1,7 @@
 redis.call('flushall')
-
+for i = 0, 51 do
+  redis.call('sadd', 'deck', i)
+end
 
 return {
   'status', 1,
