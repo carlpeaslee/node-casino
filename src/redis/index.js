@@ -5,10 +5,12 @@ export const tex = redis.createClient()
 export const convert = (res) => {
   let gamestate = {}
   res.forEach( (value, index) => {
-    if (res[index-1] === 'hand') {
-      gamestate.hand = res[index]
+    if (res[index-1] === 'cards') {
+      gamestate.cards = res[index]
     } else if (res[index-1] === 'table') {
       gamestate.table = res[index]
+    } else if (res[index-1] === 'occupiedSeats') {
+      gamestate.occupiedSeats = res[index]
     } else if ( index % 2 === 0) {
       if (Array.isArray(res[index + 1])) {
         let playerObject = {}

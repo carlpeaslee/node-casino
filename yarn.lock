@@ -1915,6 +1915,10 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
+pokersolver@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/pokersolver/-/pokersolver-2.1.2.tgz#06ff3c0cd6b2850fa89e60dda46fe52c1bb15e2f"
+
 prepend-http@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"

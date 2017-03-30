@@ -19,7 +19,7 @@ const TexasHoldem = (client, io) => {
 
   client.on('joinTable', (data = {user, tableId}) => {
     let {user, tableId} = data
-    client.join(user)
+    client.user = user
 
     joinTable(tableId, user).then( (update, err) => {
       client.join(tableId, ()=>{
@@ -33,18 +33,28 @@ const TexasHoldem = (client, io) => {
         setInterval( ()=> {
           manager(tableId, user).then( (result, err) => {
             client.emit('update', result)
+            if (update.winner) {
+              client.nsp.to(tableId).emit('update', update)
+            }
           })
-        },1000)
+        },2000)
 
 
       })
     })
   })
 
-  client.on('action', (data = {user, tableId, action}) => {
-    manger(tableId, user, action).then( (update, err) => {
-      console.log(update)
+  client.on('action', (action) => {
+    let {user, rooms} = client
+    let keys = Object.keys(rooms)
+    let tableId = keys.find( (key) => {
+      return rooms[key].includes('table')
+    })
+    manager(tableId, user, action).then( (update, err) => {
       client.emit('update', update)
+      if (update.winner) {
+        client.nsp.to(tableId).emit('update', update)
+      }
     })
   })
 
